@@ -1,0 +1,121 @@
+#include<iostream>
+#include<fstream>
+using namespace std;
+
+ 
+
+int** alloc(int **arr, int row, int col)
+{
+
+ 
+
+    arr = new int*[row];
+
+ 
+
+    for (int r = 0; r < row; r++)
+    {
+        arr[r] = new int[col];
+    }
+    return arr;
+}
+
+ 
+
+int** read(ifstream& fin, int** arr, int& row, int& col)
+{
+    fin.open("input.txt",ios::in);
+
+ 
+
+    fin >> row;
+    fin >> col;
+    
+    arr = alloc(arr,row,col);
+
+ 
+
+    for (int r = 0; r < row; r++)
+    {
+        for (int c = 0; c < col; c++)
+        {
+            fin >> arr[r][c];
+        }
+    }
+
+ 
+
+    return arr;
+}
+
+ 
+
+
+void print(int **arr, int row, int col)
+{
+    for (int r = 0; r < row;r++)
+    {
+        for (int c = 0; c < col;c++)
+        {
+            cout << arr[r][c] << "  ";
+        }
+        cout << endl;
+    }
+}
+
+ 
+
+int main()
+{
+    ifstream fin;
+
+ 
+
+    fin.open("input.txt",ios::in);
+
+ 
+
+    int **arr=NULL;
+    int *length = NULL;
+    int row;
+
+ 
+
+    fin >> row;
+    arr = new int*[row];
+    length = new int[row];
+
+ 
+
+    
+
+ 
+
+    for (int r = 0; r < row; r++)
+    {
+        fin >> length[r]; //3
+        arr[r] = new int[length[r]];
+        for (int i = 0; i < length[r]; i++)
+        {
+            fin >> arr[r][i];
+        }
+    }
+
+ 
+
+    for (int r = 0; r < row; r++)
+    {
+        for (int i = 0; i < length[r]; i++)
+        {
+            cout << arr[r][i] << "   ";
+        }
+        cout << endl;
+    }
+    
+    
+
+ 
+
+
+    return 0;
+}
